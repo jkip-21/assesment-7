@@ -1,0 +1,16 @@
+{
+    "name": "meeky/meek-plugin",
+    "description": "Working on employeeplugin",
+    "type": "project",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Jonah"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\": "./inc"}
+    }
+}
