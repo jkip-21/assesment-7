@@ -1,6 +1,6 @@
 <?php
 /**
- * @package  MeekPlugin
+ * @package  EmployeePlugin
  */
 namespace Inc\Api;
 

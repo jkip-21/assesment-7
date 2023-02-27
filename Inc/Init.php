@@ -1,6 +1,6 @@
 <?php
 /**
- * @package  MeekPlugin
+ * @package  EmployeePlugin
  */
 namespace Inc;
 
@@ -15,7 +15,10 @@ final class Init
 		return [
 			Pages\Admin::class,
 			Base\Enqueue::class,
-			Base\SettingsLinks::class
+			Base\SettingsLinks::class,
+			Base\BaseController::class,
+			Base\FetchEmployee::class,
+			// Base\ShortCode::class
 		];
 	}
 
@@ -34,11 +37,7 @@ final class Init
 		}
 	}
 
-	/**
-	 * Initialize the class
-	 * @param  class $class    class from the services array
-	 * @return class instance  new instance of the class
-	 */
+
 	private static function instantiate( $class )
 	{
 		$service = new $class();
