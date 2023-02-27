@@ -1,18 +1,19 @@
 <?php
 /**
- * @package  MeekPlugin
+ * @package EmployeePlugin
  */
 
  namespace Inc\Pages;
 
-use \Inc\Base\BaseController;
+// use \Inc\Api\Callbacks;
 use \Inc\Api\SettingsApi;
+use \Inc\Api\Callbacks\AdminCallbacks;
 
 
 /**
 * 
 */
-class Admin extends BaseController
+class Admin
 {
 	public $settings;
 
@@ -20,44 +21,52 @@ class Admin extends BaseController
 
 	public $subpages = array();
 
-	public function __construct()
+	public $callbacks;
+
+	public function register() 
 	{
+		$this->callbacks = new AdminCallbacks();
 		$this->settings = new SettingsApi();
+		$this->adminPages();
+		$this->adminsubpages();
+		$this->settings->addPages( $this->pages )->withSubPage( 'Employee' )->addSubPages( $this->subpages )->register();
+	}
+	public function adminPages()
+	{
 
 		$this->pages = array(
 			array(
-				'page_title' => 'Meek Plugin', 
+				'page_title' => 'Employee Plugin', 
 				'menu_title' => 'Employee', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'meek_plugin', 
-				'callback' => array($this->callbacks,'MeekMembers'), 
+				'menu_slug' => 'employee_plugin', 
+				'callback' => array($this->callbacks,'employeeDasboard'), 
 				'icon_url' => 'dashicons-store', 
 				'position' => 110
 			)
 		);
 
+	}
+	public function adminsubpages(){
 		$this->subpages = array(
 			array(
-				'parent_slug' => 'meek_plugin', 
+				'parent_slug' => 'employee_plugin', 
 				'page_title' => 'Custom Post Types', 
 				'menu_title' => 'Create Employee', 
 				'capability' => 'manage_options', 
 				'menu_slug' => 'meek_cpt', 
-				'callback' => function() { echo '<h1>CPT Manager</h1>'; }
+				'callback' => array($this->callbacks,'newEmployeeMain'),
 			),
 			array(
-				'parent_slug' => 'meek_plugin', 
+				'parent_slug' => 'employee_plugin', 
 				'page_title' => 'Custom View Employee', 
 				'menu_title' => 'View Employee', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'meek_taxonomies', 
-				'callback' => function() { echo '<h1>Taxonomies Manager</h1>'; }
+				'menu_slug' => 'employee_taxonomies', 
+				'callback' => array($this->callbacks,'employeeDataMain'),
 			),
 		);
 	}
 
-	public function register() 
-	{
-		$this->settings->addPages( $this->pages )->withSubPage( 'Employee' )->addSubPages( $this->subpages )->register();
-	}
+	
 }
