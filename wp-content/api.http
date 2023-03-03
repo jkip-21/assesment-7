@@ -1,0 +1,30 @@
+# converting project to json
+
+GET  http://localhost/wp/employee/wp-json
+
+###Fetching _________
+GET  http://localhost/wp/employee/wp-json/wp/v2
+
+###Fetching posts
+GET  http://localhost/wp/employee/wp-json/wp/v2/posts
+
+####Fetching one api
+GET  http://localhost/wp/employee/wp-json/wp/v2/posts/1
+
+###Fetching users
+GET  http://localhost/wp/employee/wp-json/wp/v2/users
+
+###creating the token
+POST  http://localhost/wp/employee/wp-json/jwt-auth/v1/token
+Content-Type: application/json
+{
+    "username": "admin",
+    "password": "admin"
+}
+### Create a post
+POST  http://localhost/wp/employee/wp-json/wp/v2/posts
+{
+    "title":"Created with Rest Api",
+    "content":"Created with Rest Api",
+    "status":"publish"
+}

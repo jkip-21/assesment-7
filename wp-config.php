@@ -80,7 +80,8 @@ $table_prefix = 'wp_';
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
 define( 'WP_DEBUG', false );
-
+define('WP_DEFINE_LOG', true);
+define('JWT_AUTH_SECRET_KEY','IJBWIUGB3IGO98GJBKJSSF');
 /* Add any custom values between this line and the "stop editing" line. */
 
 
